@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Search</title>
+</head>
+<body>
+    <h2>Order Search</h2>
+    <form th:action="@{/order/total}" th:method="get" th:object="${orderSearch}">
+        <label for="orderId">Enter Order ID:</label>
+        <input type="text" id="orderId" name="orderId" th:field="*{orderId}" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <div th:if="${orderDetails != null}">
+        <h3>Order Details</h3>
+        <p th:text="'Order ID: ' + ${orderDetails.orderId}"></p>
+        <p th:text="'Order Date: ' + ${orderDetails.orderDate}"></p>
+        <p th:text="'Customer ID: ' + ${orderDetails.customerId}"></p>
+        <p th:text="'Total: ' + ${orderDetails.total}"></p>
+        <p th:text="'Cost Price: ' + ${orderDetails.costPrice}"></p>
+    </div>
+    <div th:if="${errorMessage != null}">
+        <p th:text="${errorMessage}"></p>
+    </div>
+</body>
+</html>
